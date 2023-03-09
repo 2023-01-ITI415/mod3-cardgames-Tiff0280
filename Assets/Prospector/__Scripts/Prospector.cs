@@ -232,6 +232,55 @@ public class Prospector : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Test whether the game is over
+    /// </summary>
+    void CheckForGameOver()
+    {                                                 // a
+        // If the mine is empty, the game is over
+        if (mine.Count == 0)
+        {
+            GameOver(true);  // Call GameOver() with a win
+            return;
+        }
+
+        // If there are still cards in the mine & draw pile, the game’s not over
+        if (drawPile.Count > 0) return;
+
+        // Check for remaining valid plays
+        foreach (CardProspector cp in mine)
+        {
+            // If there is a valid play, the game’s not over
+            if (target.AdjacentTo(cp)) return;
+        }
+
+        // Since there are no valid plays, the game is over
+        GameOver(false);  // Call GameOver with a loss
+    }
+
+
+    /// <summary>
+    /// Called when the game is over. Simple for now, but expandable
+    /// </summary>
+    /// <param name="won">true if the player won</param>
+    void GameOver(bool won)
+    {
+        if (won)
+        {
+            Debug.Log("Game Over. You won! :)");
+        }
+        else
+        {
+            Debug.Log("Game Over. You Lost. :(");
+        }
+
+        // Reset the CardSpritesSO singleton to null
+        CardSpritesSO.RESET();                                                // b
+        // Reload the scene, resetting the game
+        // Note that there are TWO underscores at the beginning of "__Prospector…
+        SceneManager.LoadScene("__Prospector_Scene_0");
+    }
+
 
     /// <summary>
     /// Handler for any time a card in the game is clicked
