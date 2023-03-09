@@ -22,6 +22,9 @@ public class Prospector : MonoBehaviour
     private Deck deck;
     private JsonLayout jsonLayout; 
 
+    // A Dictionary to pair mine layout IDs and actual Cards
+    private Dictionary<int, CardProspector> mineIdToCardDict;
+
     void Start()
     {
         // Set the private Singleton. We’ll use this later.
@@ -89,7 +92,12 @@ public class Prospector : MonoBehaviour
             layoutAnchor = tGO.transform;             // Grab its Transform
         }
 
-        CardProspector cp;                                                   
+        CardProspector cp;
+
+
+        // Generate the Dictionary to match mine layout ID to CardProspector
+        mineIdToCardDict = new Dictionary<int, CardProspector>();
+
 
         // Iterate through the JsonLayoutSlots pulled from the JSON_Layout
         foreach (JsonLayoutSlot slot in jsonLayout.slots)
@@ -117,6 +125,11 @@ public class Prospector : MonoBehaviour
             cp.SetSpriteSortingLayer(slot.layer);
 
             mine.Add(cp); // Add this CardProspector to the List<> mine
+
+            // Add this CardProspector to the mineIDtoCardDict Dictionary
+            mineIdToCardDict.Add(slot.id, cp);
+
+
         }
     }
 
@@ -194,6 +207,32 @@ public class Prospector : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// This turns cards in the Mine face-up and face-down
+    /// </summary>
+    public void SetMineFaceUps()
+    {                                           
+        CardProspector coverCP;
+        foreach (CardProspector cp in mine)
+        {
+            bool faceUp = true; // Assume the card will be face-up
+
+            // Iterate through the covering cards by mine layout ID
+            foreach (int coverID in cp.layoutSlot.hiddenBy)
+            {
+                coverCP = mineIdToCardDict[coverID];
+                // If the covering card is null or still in the mine...
+                if (coverCP == null || coverCP.state == eCardState.mine)
+                {
+                    faceUp = false; // then this card is face-down
+                }
+            }
+                cp.faceUp = faceUp; // Set the value on the card
+        }
+    }
+
+
     /// <summary>
     /// Handler for any time a card in the game is clicked
     /// </summary>
@@ -213,8 +252,22 @@ public class Prospector : MonoBehaviour
             S.UpdateDrawPile();          // Restack the drawPile
             break;
             case eCardState.mine:
-            // More to come here
-            break;
+            // Clicking a card in the mine will check if it’s a valid play
+            bool validMatch = true;  // Initially assume that it’s valid 
+
+            // If the card is face-down, it’s not valid
+            if (!cp.faceUp) validMatch = false;
+
+            // If it’s not an adjacent rank, it’s not valid
+            if (!cp.AdjacentTo(S.target)) validMatch = false;          
+
+            if (validMatch)
+            {        // If it’s a valid card
+                S.mine.Remove(cp);   // Remove it from the tableau List
+                S.MoveToTarget(cp);  // Make it the target card
+                S.SetMineFaceUps();  // Be sure to add this line!!
+                }
+                break;
         }
     }
 }
