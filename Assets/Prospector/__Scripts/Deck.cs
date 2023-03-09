@@ -20,11 +20,14 @@ public class Deck : MonoBehaviour
 
     static public GameObject SPRITE_PREFAB { get; private set; }
 
+    /*
     void Start()
     {
         InitDeck();
         Shuffle(ref cards);
     }
+    */
+
 
     /// <summary>
     /// The Prospector class will call InitDeck to set up the deck and build
