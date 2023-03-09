@@ -106,6 +106,9 @@ public class Prospector : MonoBehaviour
             // CardProspectors in the mine have the state CardState.mine
             cp.state = eCardState.mine;
 
+            // Set the sorting layer of all SpriteRenderers on the Card
+            cp.SetSpriteSortingLayer(slot.layer);
+
             mine.Add(cp); // Add this CardProspector to the List<> mine
         }
     }

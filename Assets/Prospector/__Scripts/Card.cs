@@ -191,4 +191,61 @@ public class Card : MonoBehaviour
         _tGO.name = "back";
         back = _tGO;
     }
+
+    private SpriteRenderer[] spriteRenderers;
+
+    /// <summary>
+    /// Gather all SpriteRenderers on this and its children into an array.
+    /// </summary>
+    void PopulateSpriteRenderers()
+    {
+        // If we’ve already populated spriteRenderers, just return.            
+        if (spriteRenderers != null) return;
+        // GetComponentsInChildren is slow, but we’re only doing it once per card
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+    }
+
+    /// <summary>
+    /// Moves the Sprites of this Card into a specified sorting layer
+    /// </summary>
+    /// <param name="layerName">The name of the layer to move to</param>
+    public void SetSpriteSortingLayer(string layerName)
+    {
+        PopulateSpriteRenderers();
+
+        foreach (SpriteRenderer srend in spriteRenderers)
+        {
+            srend.sortingLayerName = layerName;
+        }
+    }
+
+    /// <summary>
+    /// Sets the sortingOrder of the Sprites on this Card. This allows multiple
+    /// Cards to be in the same sorting layer and still overlap properly, and
+    /// it is used by both the draw and discard piles.
+    /// </summary>
+    /// <param name="sOrd">The sortingOrder for the face of the Card</param>
+    public void SetSortingOrder(int sOrd)
+    {                                    // b
+        PopulateSpriteRenderers();
+
+        foreach (SpriteRenderer srend in spriteRenderers)
+        {
+            if (srend.gameObject == this.gameObject)
+            {
+                // If the gameObject is this.gameObject, it’s the card face
+                srend.sortingOrder = sOrd;  // Set its order to sOrd
+            }
+            else if (srend.gameObject.name == "back")
+            {
+                 // If it’s the back, set it to the highest layer
+                srend.sortingOrder = sOrd + 2;
+            }
+            else
+            {
+                // If it’s anything else, put it in between.
+                srend.sortingOrder = sOrd + 1;
+            }
+        }
+    }
 }
