@@ -37,7 +37,14 @@ public class Prospector : MonoBehaviour
 
         drawPile = ConvertCardsToCardProspectors(deck.cards);
         LayoutMine();
+
+        // Set up the initial target card
+        MoveToTarget(Draw());
+
+        // Set up the draw pile
+        UpdateDrawPile();
     }
+
 
     /// <summary>
     /// Converts each Card in a List(Card) into a List(CardProspector) so that it
@@ -110,6 +117,80 @@ public class Prospector : MonoBehaviour
             cp.SetSpriteSortingLayer(slot.layer);
 
             mine.Add(cp); // Add this CardProspector to the List<> mine
+        }
+    }
+
+    /// <summary>
+    /// Moves the current target card to the discardPile
+    /// </summary>
+    /// <param name="cp">The CardProspector to be moved</param>
+    void MoveToDiscard(CardProspector cp)
+    {
+        // Set the state of the card to discard
+        cp.state = eCardState.discard;
+        discardPile.Add(cp);  // Add it to the discardPile List<>
+        cp.transform.SetParent(layoutAnchor); // Update its transform parent
+
+        // Position it on the discardPile
+        cp.SetLocalPos(new Vector3(
+        jsonLayout.multiplier.x * jsonLayout.discardPile.x,
+        jsonLayout.multiplier.y * jsonLayout.discardPile.y,
+        0));
+
+        cp.faceUp = true;
+
+        // Place it on top of the pile for depth sorting
+        cp.SetSpriteSortingLayer(jsonLayout.discardPile.layer);              
+        cp.SetSortingOrder(-200 + (discardPile.Count * 3));                  
+    }
+
+    /// <summary>
+    /// Make cp the new target card
+    /// </summary>
+    /// <param name="cp">The CardProspector to be moved</param>
+    void MoveToTarget(CardProspector cp)
+    {
+        // If there is currently a target card, move it to discardPile
+        if (target != null) MoveToDiscard(target);
+
+        // Use MoveToDiscard to move the target card to the correct location
+        MoveToDiscard(cp);                                                    
+
+        // Then set a few additional things to make cp the new target
+        target = cp; // cp is the new target
+        cp.state = eCardState.target;
+
+        // Set the depth sorting so that cp is on top of the discardPile
+        cp.SetSpriteSortingLayer("Target");                                 
+        cp.SetSortingOrder(0);
+    }
+
+    /// <summary>
+    /// Arranges all the cards of the drawPile to show how many are left
+    /// </summary>
+    void UpdateDrawPile()
+    {
+        CardProspector cp;
+        // Go through all the cards of the drawPile
+        for (int i = 0; i < drawPile.Count; i++)
+        {
+            cp = drawPile[i];
+            cp.transform.SetParent(layoutAnchor);
+
+            // Position it correctly with the layout.drawPile.stagger
+            Vector3 cpPos = new Vector3();
+            cpPos.x = jsonLayout.multiplier.x * jsonLayout.drawPile.x;
+            // Add the staggering for the drawPile
+            cpPos.x += jsonLayout.drawPile.xStagger * i;
+            cpPos.y = jsonLayout.multiplier.y * jsonLayout.drawPile.y;
+            cpPos.z = 0.1f * i;
+            cp.SetLocalPos(cpPos);
+
+            cp.faceUp = false; // DrawPile Cards are all face-down
+            cp.state = eCardState.drawpile;
+            // Set depth sorting
+            cp.SetSpriteSortingLayer(jsonLayout.drawPile.layer);
+            cp.SetSortingOrder(-10 * i);
         }
     }
 }
