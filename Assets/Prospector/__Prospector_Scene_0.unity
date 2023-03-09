@@ -247,3 +247,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e1e23df5ffd1a4e9e2901462e0abf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardSprites: {fileID: 11400000, guid: b063d5d3633cb8044aac27e262a3759b, type: 2}
+  prefabCard: {fileID: 3374696310876385389, guid: 7e056701658269b4ab08d2d68a871ca3,
+    type: 3}
+  prefabSprite: {fileID: 1000014090761352, guid: 30a6ba41f0d264815a76b64a60ee0b62,
+    type: 3}
+  startFaceUp: 1
+  deckAnchor: {fileID: 0}
+  cards: []
