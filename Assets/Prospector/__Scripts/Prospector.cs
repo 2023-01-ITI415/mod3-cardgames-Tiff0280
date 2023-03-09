@@ -267,11 +267,13 @@ public class Prospector : MonoBehaviour
     {
         if (won)
         {
-            Debug.Log("Game Over. You won! :)");
+            //Debug.Log("Game Over. You won! :)");
+            ScoreManager.TALLY(eScoreEvent.gameWin);
         }
         else
         {
-            Debug.Log("Game Over. You Lost. :(");
+            //Debug.Log("Game Over. You Lost. :(");
+            ScoreManager.TALLY(eScoreEvent.gameLoss);
         }
 
         // Reset the CardSpritesSO singleton to null
@@ -299,6 +301,7 @@ public class Prospector : MonoBehaviour
             // Call two methods on the Prospector Singleton S
             S.MoveToTarget(S.Draw());  // Draw a new target card
             S.UpdateDrawPile();          // Restack the drawPile
+            ScoreManager.TALLY(eScoreEvent.draw);
             break;
             case eCardState.mine:
             // Clicking a card in the mine will check if it’s a valid play
@@ -315,8 +318,9 @@ public class Prospector : MonoBehaviour
                 S.mine.Remove(cp);   // Remove it from the tableau List
                 S.MoveToTarget(cp);  // Make it the target card
                 S.SetMineFaceUps();  // Be sure to add this line!!
-                }
-                break;
+                ScoreManager.TALLY(eScoreEvent.mine);
+            }
+            break;
         }
     }
 }
