@@ -334,5 +334,7 @@ public class Prospector : MonoBehaviour
             }
             break;
         }
+
+        S.CheckForGameOver();
     }
 }
