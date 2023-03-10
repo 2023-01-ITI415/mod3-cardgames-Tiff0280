@@ -22,6 +22,12 @@ public class ScoreManager : MonoBehaviour
     static public int HIGH_SCORE = 0;
 
     [Header("Inscribed")]
+    public GameObject floatingScorePrefab;
+    public float floatDuration = 0.75f;
+    public Vector2 fsPosMid = new Vector2(0.5f, 0.90f);
+    public Vector2 fsPosRun = new Vector2(0.5f, 0.75f);
+    public Vector2 fsPosMid2 = new Vector2(0.4f, 1.0f);
+    public Vector2 fsPosEnd = new Vector2(0.5f, 0.95f);
     [Tooltip("If true, then score events are logged to the Console.")]
     public bool logScoreEvents = true;
 
@@ -81,6 +87,7 @@ public class ScoreManager : MonoBehaviour
                 break;
         }
 
+
         string scoreStr = score.ToString("#,##0"); // The 0 is a zero       
         // This second switch statement handles round wins and losses
         switch (evt)
@@ -124,7 +131,20 @@ public class ScoreManager : MonoBehaviour
                 Log($"score:{scoreStr}  scoreRun:{scoreRun}  chain:{chain}");
                 break;
         }
+
+        // Call FloatingScoreHandler to show the score moving
+        FloatingScoreHandler(evt);                                           
+
+        // If the game is over, REROUTE_TO_SCOREBOARD all FloatingScores
+        if (evt == eScoreEvent.gameWin || evt == eScoreEvent.gameLoss)
+        {      // b
+            FloatingScore.REROUTE_TO_SCOREBOARD();
+        }
+
+
     }
+
+
 
     /// <summary>
     /// The Log method allows us to only send logs to the Console if the bool
@@ -155,4 +175,89 @@ public class ScoreManager : MonoBehaviour
     static public int CHAIN { get { return S.chain; } } // j
     static public int SCORE { get { return S.score; } }
     static public int SCORE_RUN { get { return S.scoreRun; } }
+
+    private Transform canvasTrans;
+    private FloatingScore fsFirstInRun; // The first FloatingScore of this run
+
+    void Start()
+    {
+        ScoreBoard.SCORE = SCORE;// Show the score on the ScoreBoard
+        canvasTrans = GameObject.Find("Canvas").transform;
+    }
+
+    /// <summary>
+    /// Turns the eScoreEvents posted to Event into FloatingScore movement.
+    /// </summary>
+    void FloatingScoreHandler(eScoreEvent evt)
+    {
+        List < Vector2 > fsPts;
+        switch (evt)
+        {
+            case eScoreEvent.mine:// Remove a mine card
+            // Create a FloatingScore for this score
+            GameObject go = Instantiate<GameObject>(floatingScorePrefab);
+            go.transform.SetParent(canvasTrans);
+            go.transform.localScale = Vector3.one;                       
+            go.transform.localPosition = Vector3.zero;
+            FloatingScore fs = go.GetComponent<FloatingScore>();
+
+            fs.score = chain;// Set score of fs to the current chain value
+
+            // Get the current mousePosition in Canvas anchor coordinates
+            Vector2 mousePos = Input.mousePosition;
+            mousePos.x /= Screen.width;
+            mousePos.y /= Screen.height;
+
+            // Make Bezier points to move fs from mousePos to fsPosRun
+            fsPts = new List<Vector2>();
+            fsPts.Add(mousePos);
+            fsPts.Add(fsPosMid);
+            fsPts.Add(fsPosRun);
+            
+            // Set the fs fontSizes
+            fs.fontSizes = new float[] { 10, 56, 10 };                      
+
+            // If this is the first FloatingScore in this run
+            if (fsFirstInRun == null)
+            {
+                // Set it to stick around when it’s done                   
+                fsFirstInRun = fs;
+                fs.fontSizes[2] = 48;
+            }
+            else
+            {
+                // Else, report finish to the first FS of this run
+                fs.FSCallbackEvent += fsFirstInRun.FSCallback;               
+            }
+
+            fs.Init(fsPts, floatDuration);
+            break;
+
+            // Same things need to happen whether it’s a draw, a win, or a loss
+            case eScoreEvent.draw:// Drawing a card
+            case eScoreEvent.gameWin:// Won the round
+            case eScoreEvent.gameLoss:// Lost the round
+            // Add fsFirstInRun to the ScoreBoard score
+            if (fsFirstInRun != null)
+            {
+                // Create points for the Bézier curve
+                fsPts = new List<Vector2>();
+                fsPts.Add(fsPosRun);
+                fsPts.Add(fsPosMid2);
+                fsPts.Add(fsPosEnd);
+                // Also adjust the fontSize
+                fsFirstInRun.fontSizes = new float[] { 48, 56, 10 };
+
+                // Add a ScoreBoard listener to the fsFirstInRun.FSCallbackEvent
+                fsFirstInRun.FSCallbackEvent += ScoreBoard.FS_CALLBACK; // g
+
+                fsFirstInRun.Init(fsPts, floatDuration, 0);// Init the movement
+
+                fsFirstInRun = null;  // Clear fsFirstInRun so it’s created again
+            }
+
+            break;
+
+        }
+    }
 }
