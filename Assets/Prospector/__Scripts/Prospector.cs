@@ -27,6 +27,8 @@ public class Prospector : MonoBehaviour
 
     public List<float> silverCardChances;
 
+    public List<CardProspector> potentialSpecialCards;
+
 
     // A Dictionary to pair mine layout IDs and actual Cards
     private Dictionary<int, CardProspector> mineIdToCardDict;
@@ -342,7 +344,6 @@ public class Prospector : MonoBehaviour
             }
             break;
         }
-
         S.CheckForGameOver();
     }
 }
