@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-[RequireComponent(typeof(Deck))]                                             
+[RequireComponent(typeof(Deck))]
 [RequireComponent(typeof(JsonParseLayout))]
 public class Prospector : MonoBehaviour
 {
@@ -17,16 +17,21 @@ public class Prospector : MonoBehaviour
     public List<CardProspector> drawPile;
 
     public List<CardProspector> discardPile;
-    public List<CardProspector> mine; 
+    public List<CardProspector> mine;
     public CardProspector target;
 
     private Transform layoutAnchor;
 
     private Deck deck;
-    private JsonLayout jsonLayout; 
+    private JsonLayout jsonLayout;
+
+    public List<float> silverCardChances;
+
 
     // A Dictionary to pair mine layout IDs and actual Cards
     private Dictionary<int, CardProspector> mineIdToCardDict;
+
+
 
     void Start()
     {
@@ -52,6 +57,9 @@ public class Prospector : MonoBehaviour
     }
 
 
+
+
+
     /// <summary>
     /// Converts each Card in a List(Card) into a List(CardProspector) so that it
     ///  can be used in the Prospector game.
@@ -60,11 +68,11 @@ public class Prospector : MonoBehaviour
     /// <returns>A List(CardProspector) of the converted cards</returns>
     List<CardProspector> ConvertCardsToCardProspectors(List<Card> listCard)
     {
-        List < CardProspector > listCP = new List<CardProspector>();
+        List<CardProspector> listCP = new List<CardProspector>();
         CardProspector cp;
         foreach (Card card in listCard)
         {
-            cp = card as CardProspector;                                    
+            cp = card as CardProspector;
             listCP.Add(cp);
         }
         return (listCP);

@@ -519,6 +519,12 @@ MonoBehaviour:
   discardPile: []
   mine: []
   target: {fileID: 0}
+  silverCardChances:
+  - 1
+  - 1
+  - 0.5
+  - 0.25
+  - 0.125
 --- !u!114 &827460518
 MonoBehaviour:
   m_ObjectHideFlags: 0
