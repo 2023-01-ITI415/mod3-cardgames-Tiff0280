@@ -10,8 +10,8 @@ public enum eScoreEvent
     mine,
     gameWin,
     gameLoss,
-    Gold,
-    Silver
+    gold,
+    silver
 }
 
 // ScoreManager handles all of the scoring

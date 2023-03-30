@@ -325,6 +325,13 @@ public class Prospector : MonoBehaviour
             S.UpdateDrawPile();          // Restack the drawPile
             ScoreManager.TALLY(eScoreEvent.draw);
             break;
+
+            case eCardType.silver:
+            ScoreManager.TALLY(eScoreEvent.mine);
+            S.Invoke();  
+            ScoreManager.TALLY(eScoreEvent.mine);
+            break;
+
             case eCardState.mine:
             // Clicking a card in the mine will check if it’s a valid play
             bool validMatch = true;  // Initially assume that it’s valid 
