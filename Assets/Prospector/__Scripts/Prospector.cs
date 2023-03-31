@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
+//namespace OtherGame {} 
 [RequireComponent(typeof(Deck))]
 [RequireComponent(typeof(JsonParseLayout))]
 public class Prospector : MonoBehaviour
@@ -26,12 +26,15 @@ public class Prospector : MonoBehaviour
     private JsonLayout jsonLayout;
 
     public List<float> silverCardChances;
-
     public List<CardProspector> potentialSpecialCards;
 
 
     // A Dictionary to pair mine layout IDs and actual Cards
     private Dictionary<int, CardProspector> mineIdToCardDict;
+
+    System.Random rand = new System.Random(); 
+
+
 
 
 
@@ -50,6 +53,11 @@ public class Prospector : MonoBehaviour
 
         drawPile = ConvertCardsToCardProspectors(deck.cards);
         LayoutMine();
+
+        //make silver cards method here
+        MakeSilverCards();
+
+        // make gold card here
 
         // Set up the initial target card
         MoveToTarget(Draw());
@@ -138,6 +146,11 @@ public class Prospector : MonoBehaviour
             cp.SetSpriteSortingLayer(slot.layer);
 
             mine.Add(cp); // Add this CardProspector to the List<> mine
+
+            potentialSpecialCards.Add(cp); // ADD LINE TO ADD POTENTIAL SPECIAL CARDS
+
+            //Getcompontent sprite renderer 
+
 
             // Add this CardProspector to the mineIDtoCardDict Dictionary
             mineIdToCardDict.Add(slot.id, cp);
@@ -305,6 +318,36 @@ public class Prospector : MonoBehaviour
 
     }
 
+    void MakeSilverCards()
+    {
+
+        foreach (float chance in silverCardChances)
+        {
+            if (Random.value < chance)
+            {
+
+                Debug.Log("Make a silver card" + chance);
+
+                CardProspector tcp;
+
+                int loc = rand.Next(potentialSpecialCards.Count);
+
+                tcp = potentialSpecialCards[loc];
+
+                potentialSpecialCards.RemoveAt(loc);
+
+                Debug.Log(tcp.name);
+
+
+                //tcp.GetSpriteRenderer();  
+
+
+            }
+        
+        }
+    
+    }
+
 
     /// <summary>
     /// Handler for any time a card in the game is clicked
@@ -326,12 +369,6 @@ public class Prospector : MonoBehaviour
             ScoreManager.TALLY(eScoreEvent.draw);
             break;
 
-            case eCardType.silver:
-            ScoreManager.TALLY(eScoreEvent.mine);
-            S.Invoke();  
-            ScoreManager.TALLY(eScoreEvent.mine);
-            break;
-
             case eCardState.mine:
             // Clicking a card in the mine will check if it’s a valid play
             bool validMatch = true;  // Initially assume that it’s valid 
@@ -345,6 +382,7 @@ public class Prospector : MonoBehaviour
             if (validMatch)
             {        // If it’s a valid card
                 S.mine.Remove(cp);   // Remove it from the tableau List
+                // ask if it is a special card if it is silver, gold or none
                 S.MoveToTarget(cp);  // Make it the target card
                 S.SetMineFaceUps();  // Be sure to add this line!!
                 ScoreManager.TALLY(eScoreEvent.mine);
