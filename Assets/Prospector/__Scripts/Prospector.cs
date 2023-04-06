@@ -339,8 +339,11 @@ public class Prospector : MonoBehaviour
                 Debug.Log(tcp.name);
 
 
-                //tcp.GetSpriteRenderer();  
+                tcp.GetComponent<SpriteRenderer>();
 
+
+
+                
 
             }
         
