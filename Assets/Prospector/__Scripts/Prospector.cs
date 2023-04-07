@@ -32,7 +32,9 @@ public class Prospector : MonoBehaviour
     // A Dictionary to pair mine layout IDs and actual Cards
     private Dictionary<int, CardProspector> mineIdToCardDict;
 
-    System.Random rand = new System.Random(); 
+    System.Random rand = new System.Random();
+
+    public Sprite[] spriteArray;
 
 
 
@@ -64,6 +66,8 @@ public class Prospector : MonoBehaviour
 
         // Set up the draw pile
         UpdateDrawPile();
+
+
     }
 
 
@@ -338,15 +342,16 @@ public class Prospector : MonoBehaviour
 
                 Debug.Log(tcp.name);
 
+               
+                    SpriteRenderer renderfront = tcp.GetComponent<SpriteRenderer>();
+                    renderfront.sprite = spriteArray[0];
 
-                tcp.GetComponent<SpriteRenderer>();
-
-
-
+                GameObject tcpBack = tcp.transform.Find("back").gameObject;
+                    SpriteRenderer renderback = tcpBack.GetComponent<SpriteRenderer>();
+                    renderback.sprite = spriteArray[1];
                 
-
             }
-        
+
         }
     
     }
@@ -385,12 +390,22 @@ public class Prospector : MonoBehaviour
             if (validMatch)
             {        // If it’s a valid card
                 S.mine.Remove(cp);   // Remove it from the tableau List
-                // ask if it is a special card if it is silver, gold or none
                 S.MoveToTarget(cp);  // Make it the target card
                 S.SetMineFaceUps();  // Be sure to add this line!!
-                ScoreManager.TALLY(eScoreEvent.mine);
+
+                    //if ()
+                     //{
+                    //ScoreManager.TALLY(eScoreEvent.mine);
+                    //Invoke("ScoreManagerTally", 0.5f);
+                    //ScoreManager.TALLY(eScoreEvent.mine);
+                    //}
+                    //else
+                    //{
+
+                    ScoreManager.TALLY(eScoreEvent.mine);
+                    //}
             }
-            break;
+                break;
         }
         S.CheckForGameOver();
     }
