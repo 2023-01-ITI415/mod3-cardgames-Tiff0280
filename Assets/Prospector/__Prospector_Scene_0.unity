@@ -526,9 +526,17 @@ MonoBehaviour:
   - 0.25
   - 0.125
   potentialSpecialCards: []
+  goldCardChances:
+  - 1
+  - 1
+  - 0.5
+  - 0.25
+  - 0.125
   spriteArray:
   - {fileID: 21300000, guid: 64b6be280e77b4ac3944f7fce873368c, type: 3}
   - {fileID: 21300000, guid: 8382909428efc40dfb1c978ce3041414, type: 3}
+  - {fileID: 21300000, guid: 944dc539459fe4109b973bd4c97f68ee, type: 3}
+  - {fileID: 21300000, guid: 8ecf4828943064b3a96f6258b54c0f11, type: 3}
 --- !u!114 &827460518
 MonoBehaviour:
   m_ObjectHideFlags: 0

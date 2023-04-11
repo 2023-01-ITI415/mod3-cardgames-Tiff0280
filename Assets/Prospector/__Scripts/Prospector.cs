@@ -27,6 +27,7 @@ public class Prospector : MonoBehaviour
 
     public List<float> silverCardChances;
     public List<CardProspector> potentialSpecialCards;
+    public List<float> goldCardChances;
 
 
     // A Dictionary to pair mine layout IDs and actual Cards
@@ -60,6 +61,7 @@ public class Prospector : MonoBehaviour
         MakeSilverCards();
 
         // make gold card here
+        MakeGoldCards();
 
         // Set up the initial target card
         MoveToTarget(Draw());
@@ -355,6 +357,43 @@ public class Prospector : MonoBehaviour
         }
     
     }
+
+
+    void MakeGoldCards()
+    {
+
+        foreach (float chance in goldCardChances)
+        {
+            if (Random.value < chance)
+            {
+
+                Debug.Log("Make a gold card" + chance);
+
+                CardProspector tcp;
+
+                int loc = rand.Next(potentialSpecialCards.Count);
+
+                tcp = potentialSpecialCards[loc];
+
+                potentialSpecialCards.RemoveAt(loc);
+
+                Debug.Log(tcp.name);
+
+
+                SpriteRenderer renderfront = tcp.GetComponent<SpriteRenderer>();
+                renderfront.sprite = spriteArray[2];
+
+                GameObject tcpBack = tcp.transform.Find("back").gameObject;
+                SpriteRenderer renderback = tcpBack.GetComponent<SpriteRenderer>();
+                renderback.sprite = spriteArray[3];
+
+            }
+
+        }
+
+    }
+
+
 
 
     /// <summary>
