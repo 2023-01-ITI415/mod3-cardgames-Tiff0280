@@ -11,7 +11,8 @@
             "y": -5,
             "faceUp": false,
             "layer": "Row0",
-            "hiddenByString": "3,4"
+	    "hiddenByString": "3,4"
+            
         },
         {
             "id": 1,
