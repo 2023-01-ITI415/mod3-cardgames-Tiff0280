@@ -229,7 +229,7 @@
             "faceUp": true,
             "layer": "Row2",
             "hiddenByString": "26"
-        }
+        },
         {
             "id": 28,
             "x": -9,
@@ -237,7 +237,7 @@
             "faceUp": true,
             "layer": "Row3",
             "hiddenByString": "27"
-        }
+        },
         {
             "id": 29,
             "x": -9,
@@ -245,7 +245,7 @@
             "faceUp": true,
             "layer": "Row4",
             "hiddenByString": "28"
-        }
+        },
         {
             "id": 30,
             "x": 9,
@@ -253,7 +253,7 @@
             "faceUp": true,
             "layer": "Row0",
             
-        }
+        },
         {
             "id": 31,
             "x": 9,
@@ -261,7 +261,7 @@
             "faceUp": true,
             "layer": "Row1",
             "hiddenByString": "30"
-        }
+        },
         {
             "id": 32,
             "x": 9,
@@ -269,7 +269,7 @@
             "faceUp": true,
             "layer": "Row2",
             "hiddenByString": "31"
-        }
+        },
 
         {
             "id": 33,
@@ -278,7 +278,7 @@
             "faceUp": true,
             "layer": "Row3",
             "hiddenByString": "32"
-        }
+        },
 
         {
             "id": 34,
@@ -288,8 +288,6 @@
             "layer": "Row4",
             "hiddenByString": "33"
         }
-
-
 
     ],
     "drawPile": {
