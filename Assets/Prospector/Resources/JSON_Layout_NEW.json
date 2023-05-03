@@ -1,0 +1,303 @@
+{
+    "multiplier": {
+        "x": 1.25,
+        "y": 1.5
+    },
+
+    "slots": [
+        {
+            "id": 0,
+            "x": 6,
+            "y": 5,
+            "faceUp": true,
+            "layer": "Row0",
+	    "hiddenByString": "1"
+            
+        },
+        {
+            "id": 1,
+            "x": 6,
+            "y": 4,
+            "faceUp": true,
+            "layer": "Row1",
+            "hiddenByString": "2"
+        },
+        {
+            "id": 2,
+            "x": 6,
+            "y": 3,
+            "faceUp": true,
+            "layer": "Row2",
+            "hiddenByString": "3"
+        },
+        {
+            "id": 3,
+            "x": 6,
+            "y": 2,
+            "faceUp": true,
+            "layer": "Row3",
+            "hiddenByString": "4"
+        },
+        {
+            "id": 4,
+            "x": 6,
+            "y": 1,
+            "faceUp": true,
+            "layer": "Row4",
+            "hiddenByString": ""
+        },
+        {
+            "id": 5,
+            "x": 3,
+            "y": 5,
+            "faceUp": true,
+            "layer": "Row0",
+            "hiddenByString": "6"
+        },
+        {
+            "id": 6,
+            "x": 3,
+            "y": 4,
+            "faceUp": true,
+            "layer": "Row1",
+            "hiddenByString": "7"
+        },
+        {
+            "id": 7,
+            "x": 3,
+            "y": 3,
+            "faceUp": true,
+            "layer": "Row2",
+            "hiddenByString": "8"
+        },
+        {
+            "id": 8,
+            "x": 3,
+            "y": 2,
+            "faceUp": true,
+            "layer": "Row3",
+            "hiddenByString": "9"
+        },
+        {
+            "id": 9,
+            "x": 3,
+            "y": 1,
+            "faceUp": true,
+            "layer": "Row4",
+            "hiddenByString": ""
+        },
+        {
+            "id": 10,
+            "x": 0,
+            "y": 5,
+            "faceUp": true,
+            "layer": "Row0",
+            "hiddenByString": "11"
+        },
+        {
+            "id": 11,
+            "x": 0,
+            "y": 4,
+            "faceUp": true,
+            "layer": "Row1",
+            "hiddenByString": "12"
+        },
+        {
+            "id": 12,
+            "x": 0,
+            "y": 3,
+            "faceUp": true,
+            "layer": "Row2",
+            "hiddenByString": "13"
+        },
+        {
+            "id": 13,
+            "x": 0,
+            "y": 2,
+            "faceUp": true,
+            "layer": "Row3",
+            "hiddenByString": "14"
+        },
+        {
+            "id": 14,
+            "x": 0,
+            "y": 1,
+            "faceUp": true,
+            "layer": "Row4",
+            "hiddenByString": ""
+        },
+        {
+            "id": 15,
+            "x": -3,
+            "y": 5,
+            "faceUp": true,
+            "layer": "Row0",
+            "hiddenByString": "16"
+        },
+        {
+            "id": 16,
+            "x": -3,
+            "y": 4,
+            "faceUp": true,
+            "layer": "Row1",
+            "hiddenByString": "17"
+        },
+        {
+            "id": 17,
+            "x": -3,
+            "y": 3,
+            "faceUp": true,
+            "layer": "Row2",
+            "hiddenByString": "18"
+        },
+        {
+            "id": 18,
+            "x": -3,
+            "y": 2,
+            "faceUp": true,
+            "layer": "Row3",
+            "hiddenByString": "19"
+        },
+        {
+            "id": 19,
+            "x": -3,
+            "y": 1,
+            "faceUp": true,
+            "layer": "Row4",
+            "hiddenByString": ""
+        },
+        {
+            "id": 20,
+            "x": -6,
+            "y": 5,
+            "faceUp": true,
+            "layer": "Row0",
+            "hiddenByString": "21"
+        },
+        {
+            "id": 21,
+            "x": -6,
+            "y": 4,
+            "faceUp": true,
+            "layer": "Row1",
+            "hiddenByString": "22"
+        },
+        {
+            "id": 22,
+            "x": -6,
+            "y": 3,
+            "faceUp": true,
+            "layer": "Row2",
+            "hiddenByString": "23"
+        },
+        {
+            "id": 23,
+            "x": -6,
+            "y": 2,
+            "faceUp": true,
+            "layer": "Row3",
+            "hiddenByString": "24"
+        },
+        {
+            "id": 24,
+            "x": -6,
+            "y": 1,
+            "faceUp": true,
+            "layer": "Row4",
+            "hiddenByString": ""
+        },
+        {
+            "id": 25,
+            "x": -9,
+            "y": 5,
+            "faceUp": true,
+            "layer": "Row0",
+            "hiddenByString": "26"
+        },
+        {
+            "id": 26,
+            "x": -9,
+            "y": 4,
+            "faceUp": true,
+            "layer": "Row1",
+            "hiddenByString": "27"
+        },
+        {
+            "id": 27,
+            "x": -9,
+            "y": 3,
+            "faceUp": true,
+            "layer": "Row2",
+            "hiddenByString": "28"
+        },
+	{
+	    "id": 28,
+            "x": -9,
+            "y": 2,
+            "faceUp": true,
+            "layer": "Row3",
+            "hiddenByString": "29"
+        },
+	{
+	    "id": 29,
+            "x": -9,
+            "y": 1,
+            "faceUp": true,
+            "layer": "Row4",
+            "hiddenByString": ""
+        },
+	{
+	    "id": 30,
+            "x": 9,
+            "y": 5,
+            "faceUp": true,
+            "layer": "Row0",
+            "hiddenByString": "31"
+        },
+	{
+	    "id": 31,
+            "x": 9,
+            "y": 4,
+            "faceUp": true,
+            "layer": "Row1",
+            "hiddenByString": "32"
+        },
+	{
+	    "id": 32,
+            "x": 9,
+            "y": 3,
+            "faceUp": true,
+            "layer": "Row2",
+            "hiddenByString": "33"
+        },
+	{
+	    "id": 33,
+            "x": 9,
+            "y": 2,
+            "faceUp": true,
+            "layer": "Row3",
+            "hiddenByString": "34"
+        },
+	{
+	    "id": 34,
+            "x": 9,
+            "y": 1,
+            "faceUp": true,
+            "layer": "Row4",
+            "hiddenByString": ""
+        }
+	
+    ],
+    "drawPile": {
+        "x": -6,
+        "y": -4,
+        "layer": "Draw",
+        "xStagger": 0.15
+    },
+    "discardPile": {
+        "x": 0,
+        "y": -4,
+        "layer": "Discard",
+        "xStagger": 0
+    }
+}
