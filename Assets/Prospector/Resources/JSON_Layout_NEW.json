@@ -290,13 +290,13 @@
     ],
     "drawPile": {
         "x": -6,
-        "y": -4,
+        "y": -3,
         "layer": "Draw",
         "xStagger": 0.15
     },
     "discardPile": {
         "x": 0,
-        "y": -4,
+        "y": -3,
         "layer": "Discard",
         "xStagger": 0
     }
