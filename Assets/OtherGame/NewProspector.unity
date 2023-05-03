@@ -552,10 +552,10 @@ MonoBehaviour:
   floatingScorePrefab: {fileID: 4858840354776958497, guid: 902925bf53c59d940b4a13140c0e4b3a,
     type: 3}
   floatDuration: 0.75
-  fsPosMid: {x: 0.5, y: 0.9}
-  fsPosRun: {x: 0.5, y: 0.75}
-  fsPosMid2: {x: 0.4, y: 1}
-  fsPosEnd: {x: 0.5, y: 0.95}
+  fsPosMid: {x: 0.5, y: 0.5}
+  fsPosRun: {x: 0.5, y: 0.4}
+  fsPosMid2: {x: 0.4, y: 0.4}
+  fsPosEnd: {x: 0.5, y: 0.5}
   logScoreEvents: 1
   chain: 0
   scoreRun: 0
