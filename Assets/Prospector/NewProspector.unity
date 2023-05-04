@@ -359,6 +359,7 @@ GameObject:
   - component: {fileID: 827460517}
   - component: {fileID: 827460518}
   - component: {fileID: 827460519}
+  - component: {fileID: 827460520}
   m_Layer: 0
   m_Name: _MainCamera
   m_TagString: MainCamera
@@ -469,7 +470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardSprites: {fileID: 11400000, guid: b063d5d3633cb8044aac27e262a3759b, type: 2}
-  prefabCard: {fileID: 3374696310876385389, guid: 7e056701658269b4ab08d2d68a871ca3,
+  prefabCard: {fileID: 3374696310876385389, guid: e3a94e5c24fefd040960044c48d50fc0,
     type: 3}
   prefabSprite: {fileID: 1000014090761352, guid: 30a6ba41f0d264815a76b64a60ee0b62,
     type: 3}
@@ -509,7 +510,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 827460508}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa8aa075ce4851747a420eb5aa28a07d, type: 3}
   m_Name: 
@@ -577,6 +578,41 @@ MonoBehaviour:
   roundResultText: {fileID: 1301385266}
   highScoreText: {fileID: 1713429624}
   _resultsUIFieldsVisible: 0
+--- !u!114 &827460520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827460508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52dd95deb1d6aa14c9f39f00ec5cb812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roundDelay: 2
+  drawPile: []
+  discardPile: []
+  mine: []
+  target: {fileID: 0}
+  silverCardChances:
+  - 1
+  - 1
+  - 0.5
+  - 0.25
+  - 0.125
+  potentialSpecialCards: []
+  goldCardChances:
+  - 1
+  - 1
+  - 0.5
+  - 0.25
+  - 0.125
+  spriteArray:
+  - {fileID: 21300000, guid: 64b6be280e77b4ac3944f7fce873368c, type: 3}
+  - {fileID: 21300000, guid: 8382909428efc40dfb1c978ce3041414, type: 3}
+  - {fileID: 21300000, guid: 944dc539459fe4109b973bd4c97f68ee, type: 3}
+  - {fileID: 21300000, guid: 8ecf4828943064b3a96f6258b54c0f11, type: 3}
 --- !u!1 &1301385264
 GameObject:
   m_ObjectHideFlags: 0
