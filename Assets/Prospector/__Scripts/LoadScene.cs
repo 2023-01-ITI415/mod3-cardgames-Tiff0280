@@ -8,7 +8,7 @@ public class LoadScene : MonoBehaviour
 
     public void LoadScene1()
     {
-        SceneManager.LoadScene("_Prospector_Scene_0");   //NOTE a different function for each scene
+        SceneManager.LoadScene("__Prospector_Scene_0");   //NOTE a different function for each scene
     }
 
     public void LoadScene2()
